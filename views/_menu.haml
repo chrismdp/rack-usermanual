@@ -1,0 +1,10 @@
+%nav.span3.pull-right
+  %ul.nav.nav-list.affix-top{:'data-offset-top' => 100, :'data-spy' => 'affix'}
+    - @sections.each do |human_name, path|
+      %li.nav-header= human_name
+      - if (features = Dir.glob(path + '/*.feature').sort).empty?
+        %small.muted No docs yet.
+      - features.each do |fn|
+        - name = ::File.basename(fn, '.feature')
+        %li
+          %a{:href => "/help/#{::File.basename(path)}/#{name}"}= name.capitalize.gsub(/[-_]/, ' ')

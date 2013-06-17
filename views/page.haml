@@ -1,0 +1,45 @@
+%h4.page-header
+  %a{:href => '/help'} Help &amp; support
+  == &raquo; #{@human_name} &raquo; #{@page.capitalize}
+
+.container
+  .row
+    = haml :_menu
+    %article.span9.help-text
+      %h1= @json.first['name']
+      = haml :_pending, :locals => { :element => @json.first }
+      = ::Kramdown::Document.new(h(@json.first['description'])).to_html
+
+      - elements = @json.first['elements']
+      - if elements
+        %h4 Some examples:
+        .examples
+          - elements = @json.first['elements']
+          - if elements.first['keyword'] == 'Background'
+            .well.well-small
+              %strong Note:
+              The following examples assume
+              = elements.first['steps'].map{|s| 'that ' + s['name']}.to_sentence + '.'
+          - elements.select { |e| e['keyword'] == 'Scenario' }.each do |example|
+            %h5.example== Example: #{example['name'].downcase}
+            = haml :_pending, :locals => { :element => example }
+            %p
+              %em
+                - if example['steps']
+                  - example['steps'].slice_before {|step| step['keyword'] =~ /When|But/ }.each do |chunk|
+                    = replace_start(chunk.map { |step| step['keyword'].downcase + step['name'] }.join(', ')).tap {|s| s.sub!(/./, &:upcase) } + '.'
+                - else
+                  %span.muted This example hasn't yet been detailed.
+      %hr
+      %footer.muted
+        %small
+          Generated automatically from this project's
+          %a{:href => "http://github.com/cucumber/cucumber"} Cucumber
+          features.
+          View the
+          %a{:href => 'javascript:false', :'data-toggle' => 'collapse', :'data-target' => '#source'} source.
+        %br
+        %br
+        #source.collapse
+          %pre
+            %code= @raw

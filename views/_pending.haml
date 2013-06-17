@@ -1,0 +1,4 @@
+- if element['tags'] && element['tags'].any? {|t| t['name'] == '@pending' }
+  .alert.alert-info
+    %strong Please note:
+    This #{element['keyword'].downcase} does not yet exist, but is planned for some point in the future.

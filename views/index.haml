@@ -1,0 +1,7 @@
+%h4.page-header Help &amp; support
+
+.container
+  .row
+    = haml :_menu
+    %article.span9
+      = ::Kramdown::Document.new(h(::File.read(@index))).to_html
