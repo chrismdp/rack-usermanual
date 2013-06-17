@@ -5,7 +5,7 @@ describe Rack::Usermanual do
   include Rack::Test::Methods
 
   def app
-    Rack::Usermanual.new(nil, :sections => {'My section' => 'spec/fixtures/features/my-section'})
+    Rack::Usermanual.new(nil, :layout => 'spec/fixtures/layout.haml', :sections => {'My section' => 'spec/fixtures/features/my-section'})
   end
 
   it "grabs a file from the features folder" do
