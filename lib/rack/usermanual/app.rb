@@ -49,7 +49,9 @@ module Rack
       sio = StringIO.new
       json_formatter = Gherkin::Formatter::JSONFormatter.new(sio)
       parser = Gherkin::Parser::Parser.new(json_formatter)
-      raw = ::File.read("#{path}/#{page}.feature")
+      filepath = "#{path}/#{page}.feature"
+      halt 404 unless ::File.exist?(filepath)
+      raw = ::File.read(filepath)
       parser.parse(raw, uri, 0)
       json_formatter.done
       [raw, JSON.parse(sio.string)]
