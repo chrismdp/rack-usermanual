@@ -1,9 +1,23 @@
-Rack::Usermanual
+Rack Usermanual
 ================
 
 ![Build status](https://travis-ci.org/chrismdp/rack-usermanual.png) &nbsp; ![Code climate](https://codeclimate.com/github/chrismdp/rack-usermanual.png)
 
-This little piece of middleware helps you expose your cucumber features in a readable 'manual-like' style for your users to consume.
+Want to embed your cucumber features directly into your project as a User manual? Here's a gem to do it.
+
+See an example here: [http://online.soltrader.net/help/game-manual/combat](http://online.soltrader.net/help/game-manual/combat)
+
+Installation
+------------
+
+```
+gem install rack-usermanual
+```
+
+(or add it to your bundle.)
+
+Usage
+-----
 
 To use, add the following to your Rack app:
 
@@ -24,11 +38,23 @@ map "/help" do
 end
 ```
 
-Then start your app and point your browser to `/help` and your features should be displayed for you!
+Or with Rails, you can do something like this in `config/routes.rb`:
+
+```
+match "/help" => Rack::Usermanual.new(self, :sections => ... }
+```
+
+(I'm not quite sure about the best way to pass options with rails - clarifications welcome!)
+
+Then start your app and point your browser to `/help` and your features should be displayed for you.
+
+Caveats
+-------
 
 The app will use the layout that you have in layout.{erb,haml} in whichever folder you specify. The CSS in the views is based on bootstrap: you might need to style your features slightly differently to get them to work in the way that you want. In the future it may be possible to completely override the views with your own.
 
-## Contributing
+Contributing
+------------
 
 We work on pull requests. If you have an idea for something you'd like to contribute, here's how to do it:
 
