@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "rack/usermanual"
 
 Gem::Specification.new do |s|
   s.name        = "rack-usermanual"
-  s.version     = Rack::Usermanual::VERSION
+  s.version     = "0.1.0"
   s.authors     = ["Chris Parsons"]
   s.email       = ["chris.p@rsons.org"]
   s.homepage    = "http://github.com/chrismdp/rack-usermanual"
