@@ -4,6 +4,7 @@ require 'stringio'
 require 'json'
 require 'sinatra'
 require 'kramdown'
+require 'haml'
 
 module Rack
   class Usermanual < Sinatra::Base
