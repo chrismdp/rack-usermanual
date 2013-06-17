@@ -29,6 +29,10 @@ module Rack
         Rack::Utils.escape_html(text)
       end
 
+      def humanize(word)
+        word.capitalize.gsub(/[-_]/, ' ')
+      end
+
       def replace_start(sentence)
         {
           /^given / => 'Assume ',
