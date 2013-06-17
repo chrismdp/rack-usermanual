@@ -10,22 +10,27 @@ module Rack
   class Usermanual < Sinatra::Base
     VERSION = "0.1.0"
 
+    set :views, ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', '..', '..', 'views'))
+
     def initialize(app, options)
       super(app)
       @sections = options[:sections]
       @index = options[:index]
-      @main_views = options[:views]
+
+      layout = options[:layout] || 'views/layout.haml'
+
+      path = ::File.dirname(layout)
+      extension = ::File.extname(layout)
+      file = ::File.basename(layout, extension)
+
+      @render_options = {
+        :layout => file.to_sym,
+        :layout_options => { :views => path },
+        :layout_engine => extension[1..-1].to_sym
+      }
     end
 
     helpers do
-      def find_template(views, name, engine, &block)
-        new_views = [
-          ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', '..', '..', 'views')),
-          @main_views
-        ].flatten.compact
-        Array(new_views).each { |v| super(v, name, engine, &block) }
-      end
-
       def h(text)
         Rack::Utils.escape_html(text)
       end
@@ -47,7 +52,7 @@ module Rack
     end
 
     get '/?' do
-      haml :index
+      haml :index, @render_options
     end
 
     def get_feature(path, page)
@@ -74,7 +79,7 @@ module Rack
 
       @raw, @json = get_feature(path, @page)
 
-      haml :page
+      haml :page, @render_options
     end
   end
 end
