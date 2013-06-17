@@ -1,6 +1,8 @@
 Rack::Usermanual
 ================
 
+![Build status](https://travis-ci.org/chrismdp/rack-usermanual.png) &nbsp; ![Code climate](https://codeclimate.com/github/chrismdp/rack-usermanual.png)
+
 This little piece of middleware helps you expose your cucumber features in a readable 'manual-like' style for your users to consume.
 
 To use, add the following to your Rack app:
