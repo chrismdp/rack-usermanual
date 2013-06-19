@@ -1,0 +1,8 @@
+- if rows
+  %table
+    - rows.each do |cells|
+      %tr
+        - cells["cells"].each do |cell|
+          %td= cell
+  %br
+

@@ -27,7 +27,7 @@
               %em
                 - if example['steps']
                   - example['steps'].slice_before {|step| step['keyword'] =~ /When|But/ }.each do |chunk|
-                    = replace_start(chunk.map { |step| step['keyword'].downcase + step['name'] }.join(', ')).tap {|s| s.sub!(/./, &:upcase) } + '.'
+                    = replace_start(chunk.map { |step| step['keyword'].downcase + step['name'] + haml(:_cells, :locals => { :rows => step['rows']}) }.join(', ')).tap {|s| s.sub!(/./, &:upcase) }.tap {|s| s.sub!(/$/, '.') unless s.include?("<table>") }
                 - else
                   %span.muted This example hasn't yet been detailed.
       %hr
