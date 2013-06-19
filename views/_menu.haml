@@ -7,4 +7,4 @@
       - features.each do |fn|
         - name = ::File.basename(fn, '.feature')
         %li
-          %a{:href => "/help/#{::File.basename(path)}/#{name}"}= humanize(name)
+          %a{:href => "#{request.script_name}/#{::File.basename(path)}/#{name}"}= humanize(name)
