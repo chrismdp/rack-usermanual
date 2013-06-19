@@ -8,7 +8,8 @@ Gem::Specification.new do |s|
   s.email       = ["chris.p@rsons.org"]
   s.homepage    = "http://github.com/chrismdp/rack-usermanual"
   s.summary     = %q{Rack endpoint to serve your cucumber features as a user manual}
-  s.description = %q{}
+  s.description = %q{Rack::Usermanual allows you to serve your gherkin feature files as web pages within your application.}
+  s.license     = 'MIT'
 
   s.rubyforge_project = "rack-usermanual"
 
