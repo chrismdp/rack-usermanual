@@ -4,7 +4,7 @@
 
 Want to embed your cucumber features directly into your project as a User manual? Here's a gem to do it.
 
-See an example here: [http://online.soltrader.net/help/game-manual/combat](http://online.soltrader.net/help/game-manual/combat)
+See an example here: [http://soltrader-online.herokuapp.com/help/game-manual/combat](http://soltrader-online.herokuapp.com/help/game-manual/combat)
 
 ## Installation
 
